@@ -1,0 +1,67 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  color: black;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-toggler {
+  background: none;
+  border: none;
+  color: black;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.navbar-center {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.navbar-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.profile-btn {
+  border: none;
+}
+
+.navbar-app-logo-title {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  left: 4rem;
+  width: 150px;
+}
+
+.navbar-app-logo-title img {
+  height: 40px;
+  height: 40px;
+  border-radius: 20px;
+  margin-left: 10px;
+}
+
+.navbar-app-logo-title h1 {
+  font-size: 18px;
+  color: white;
+  margin: 0 10px;
+}
+
+@media (max-width: 700px) {
+  .navbar-app-logo-title {
+    visibility: hidden;
+  }
+}

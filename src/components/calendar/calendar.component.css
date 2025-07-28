@@ -1,0 +1,243 @@
+.custom-calendar {
+  padding: 20px;
+  width: 620px !important;
+}
+
+.calendar-header-month {
+  display: flex;
+  position: relative;
+  align-items: center;
+  background: var(--primary-color);
+  padding: 1rem;
+  border-radius: 20px 20px 0 0;
+}
+
+.calendar-controls {
+  display: flex;
+  margin-bottom: 5px;
+  position: absolute;
+  right: 16px;
+}
+
+.calendar-content {
+  background-color: var(--primary-color);
+  border-radius: 0 0 20px 20px;
+}
+
+.calendar-view-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.calendar-view-controls button {
+  background-color: var(--tertiary-color);
+  height: 42px;
+  width: 150px;
+  border-radius: 25px;
+  color: black;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  margin-left: 20px;
+}
+
+.calendar-view-controls button.active {
+  background-color: var(--primary-color);
+}
+
+.calendar-controls button {
+  margin: 0 10px;
+}
+
+.calendar-month {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  width: 500px;
+  padding: 1rem;
+}
+
+.calendar-header {
+  text-align: center;
+  font-weight: bold;
+  width: 70px;
+}
+
+.calendar-info-btn {
+  background-color: transparent;
+  border: 2px solid black;
+  border-radius: 20px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+}
+
+.calendar-info-btn:active,
+.calendar-info-btn:hover {
+  background-color: var(--dark-primary-color) !important;
+  border: 2px solid white !important;
+  color: white !important;
+}
+
+.calendar-day {
+  text-align: center;
+  border-radius: 50px;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar-week {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 1rem;
+  position: relative;
+}
+
+.calendar-week .calendar-day {
+  width: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: start;
+  padding: 1rem;
+}
+
+.calendar-week .calendar-day .day-number {
+  font-size: 32px;
+  margin-left: 10px;
+  width: 40px;
+}
+
+.calendar-week .calendar-day .day-name {
+  font-size: 16px;
+  margin-left: 10px;
+}
+
+.info-dot {
+  border: none;
+  border-radius: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.emotion-info {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  right: 50px;
+}
+
+.emotion-info img {
+  height: 50px;
+  width: 50px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.emotion-info .emotion-description {
+  font-size: 18px;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+/* calendar days color */
+.calendar-day-yellow {
+  background-color: #ebff00 !important;
+  color: black;
+}
+
+.calendar-day-green {
+  background-color: #00ff0a !important;
+  color: black;
+}
+
+.calendar-day-blue {
+  background-color: #0038ff !important;
+  color: white;
+}
+
+.calendar-day-orange {
+  background-color: #ffb800 !important;
+  color: black;
+}
+
+.calendar-day-gray {
+  background-color: #6782ab !important;
+  color: white;
+}
+
+.calendar-day-red {
+  background-color: #ff0000 !important;
+  color: white;
+}
+
+.calendar-day-default {
+  background-color: transparent;
+}
+
+.calendar-day-empty {
+  background-color: transparent;
+}
+
+@media (max-width: 650px) {
+  .custom-calendar {
+    width: 550px !important;
+  }
+
+  .calendar-month {
+    overflow: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-calendar {
+    width: 390px !important;
+  }
+
+  .calendar-month {
+    gap: 1px;
+    width: 350px;
+    overflow: auto;
+  }
+
+  .calendar-header-month h2 {
+    font-size: 18px;
+  }
+
+  .calendar-day {
+    width: 50px;
+    height: 50px;
+  }
+
+  .calendar-week {
+    width: 350px;
+  }
+
+  .calendar-view-controls button {
+    height: 32px;
+    width: 120px;
+  }
+
+  .calendar-info-btn {
+    height: 25px;
+    width: 20px;
+    justify-content: center;
+  }
+
+  .calendar-week .calendar-day .day-name {
+    font-size: 12px;
+  }
+
+  .emotion-info img {
+    height: 40px;
+    width: 40px;
+  }
+
+  .emotion-info .emotion-description {
+    font-size: 14px;
+    margin-right: 10px;
+  }
+}

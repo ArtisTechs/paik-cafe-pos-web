@@ -1,0 +1,11 @@
+.carousel-login {
+  height: 400px;
+  width: 400px;
+}
+
+@media (max-width: 812px) {
+  .carousel-login {
+    height: 350px;
+    width: 350px;
+  }
+}

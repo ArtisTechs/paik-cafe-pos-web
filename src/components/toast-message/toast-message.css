@@ -1,0 +1,16 @@
+.toast-message {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.toast-message p {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    width: 300px;
+}
+
+.toast-btn {
+    right: 0;
+}

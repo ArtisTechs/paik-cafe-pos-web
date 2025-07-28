@@ -1,0 +1,28 @@
+.home-page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.emotion-picker-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+  margin-top: 2rem;
+}
+
+.home-page-cards {
+  display: flex;
+  padding: 1rem;
+  gap: 3rem;
+  margin-bottom: 3rem;
+  align-items: start;
+}
+
+@media (max-width: 1560px) {
+  .home-page-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+}

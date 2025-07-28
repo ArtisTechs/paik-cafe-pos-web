@@ -1,0 +1,218 @@
+/* colors */
+.primary-color {
+  color: var(--primary-color);
+}
+
+.secondary-color {
+  color: var(--secondary-color);
+}
+
+.gradient-color {
+  color: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end));
+}
+
+/* background colors */
+.background-white {
+  background-color: white;
+}
+
+.gradient-background {
+  background: linear-gradient(
+    to bottom,
+    var(--gradient-start),
+    var(--gradient-end)
+  );
+}
+
+/* text */
+.text-black {
+  color: black;
+}
+.gradient-color-text {
+  background: linear-gradient(
+    to bottom,
+    var(--gradient-start),
+    var(--gradient-end)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+.text-label {
+  font-size: 16px;
+  font-weight: normal;
+}
+.text-value {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+.text-muted {
+  font-size: 0.85rem;
+  color: #6c757d; /* Light gray */
+  margin-top: 4px;
+  margin-bottom: 15px;
+}
+
+.logo-medium {
+  width: 65px;
+  height: 65px;
+  background-image: url("../assets/img/mindful-mentor-logo.png");
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.logo-large {
+  width: 100px;
+  height: 100px;
+  background-image: url("../assets/img/mindful-mentor-logo.png");
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* shadow */
+.shadow-black {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+.shadow-white {
+  box-shadow: 0 4px 10px rgb(255, 255, 255);
+}
+
+/* buttons */
+
+.primary-button {
+  background: var(--primary-color);
+  height: 42px;
+  width: 150px;
+  border-radius: 25px;
+  color: black;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.primary-button:hover {
+  background: var(--dark-primary-color);
+}
+
+.secondary-button {
+  background: var(--tertiary-color);
+  height: 42px;
+  width: 150px;
+  border-radius: 25px;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.secondary-button:hover {
+  background: var(--dark-tertiary-color);
+}
+
+.danger-button {
+  background: var(--danger-color);
+  height: 42px;
+  width: 150px;
+  border-radius: 25px;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.danger-button:hover {
+  background: var(--dark-danger-color);
+  color: white;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+@media (max-width: 480px) {
+  .button-container {
+    flex-direction: column-reverse;
+  }
+}
+
+.white-button {
+  background: white;
+  height: 42px;
+  width: 150px;
+  border-radius: 25px;
+  color: black;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.white-button:hover {
+  background: rgb(209, 209, 209);
+}
+
+.ellipsis-btn {
+  width: 10px;
+  height: 20px;
+}
+
+.ellipsis-btn:active,
+.ellipsis-btn:hover,
+.ellipsis-btn:focus {
+  border: none !important;
+  outline: none !important;
+}
+
+/* inputs */
+.primary-input {
+  width: 350px;
+  border-radius: 25px;
+}
+
+.primary-input:focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 5px 2px var(--primary-color) !important;
+}
+
+.error-input-text {
+  font-size: 14px;
+  font-style: italic;
+}
+
+.search-input-list {
+  width: 100%;
+  border-radius: 25px;
+  height: 42px;
+  padding: 5px 1rem;
+  border: 1px solid black;
+}
+
+.search-input-list:focus {
+  border: 3px solid var(--primary-color) !important;
+  box-shadow: 0 0 5px 2px var(--primary-color) !important;
+}
+
+@media (max-width: 480px) {
+  .primary-input {
+    width: 280px;
+  }
+}
+
+/* toast */
+.success-toast {
+  background: var(--primary-color);
+  color: green;
+}
+
+.danger-toast {
+  background: var(--danger-color);
+  color: white;
+}
+
+.warning-toast {
+  background: var(--warning-color);
+  color: black;
+}

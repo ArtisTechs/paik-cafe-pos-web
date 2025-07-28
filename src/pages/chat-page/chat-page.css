@@ -1,0 +1,130 @@
+.chat-page {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.student-list-chat {
+  margin: 2rem 0;
+}
+
+.chat-window-page {
+  background-color: var(--primary-color);
+  width: 50%;
+  height: 80vh;
+  margin-left: 2rem;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  min-width: 400px;
+  margin: 2rem 0 2rem 2rem;
+}
+
+.chat-header-page {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.chat-avatar-page {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.chat-avatar-page h3 {
+  margin-bottom: 0;
+  margin-left: 10px;
+  font-size: 24px;
+}
+
+.is-active-page {
+  position: absolute;
+  left: 20px;
+  bottom: 1px;
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--primary-color);
+  border-radius: 50%;
+  margin-left: 15px; /* Space between avatar and status */
+}
+
+.is-active-page.active {
+  background-color: green; /* Active color */
+}
+
+.is-active-page.inactive {
+  background-color: rgb(171, 171, 171); /* Inactive color */
+}
+
+.chat-body-page {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: start;
+}
+
+.chat-bubble-page {
+  max-width: 70%;
+  padding: 10px;
+  border-radius: 15px;
+  color: white;
+  position: relative;
+  word-wrap: break-word;
+}
+
+.chat-bubble-page.user {
+  background-color: white;
+  color: black;
+  align-self: flex-end;
+}
+
+.chat-bubble-page.student {
+  background-color: var(--secondary-color);
+  color: white;
+  align-self: flex-start;
+}
+
+.chat-footer-page {
+  padding: 20px;
+  border-top: 1px solid #ddd;
+  display: flex;
+}
+
+.chat-footer-page input {
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+
+.chat-footer-page input:focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 5px 2px var(--primary-color) !important;
+}
+
+.chat-footer-page .send-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+@media (max-width: 880px) {
+  .chat-page {
+    flex-direction: column;
+    justify-content: start;
+  }
+  .chat-window-page {
+    margin-left: 0;
+    min-width: 350px;
+  }
+}

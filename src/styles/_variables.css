@@ -1,0 +1,19 @@
+:root {
+  --primary-color: #b4edd8;
+  --secondary-color: #041f4a;
+  --tertiary-color: #b1abab;
+  --danger-color: #ff6f6f;
+  --warning-color: #ffe56f;
+  --gradient-start: #b4edd8;
+  --gradient-end: #21d1e9;
+  --dark-primary-color: #769f90;
+  --dark-tertiary-color: #5b5959;
+  --dark-danger-color: #bb4343;
+  --font-size: 16px;
+
+  /* Breakpoints */
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+}

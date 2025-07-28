@@ -1,0 +1,59 @@
+.dashboard-menu {
+  background: var(--primary-color);
+}
+
+.arrow-close-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--secondary-color); /* Adjust this color as needed */
+}
+
+.arrow-close-btn:hover {
+  color: white; /* Change color on hover */
+}
+
+.dashbaord-menu-item {
+  width: 300px;
+  height: 40px;
+  margin-top: 20px;
+  border-radius: 10px;
+  color: black;
+  background-color: var(--primary-color);
+  border: none;
+  display: flex;
+  align-items: center;
+}
+
+.dashbaord-menu-item i {
+  font-size: 20px;
+  margin-right: 1rem;
+}
+
+.dashbaord-menu-item:hover,
+.dashbaord-menu-item:active,
+.dashbaord-menu-item:focus,
+.dashbaord-menu-item-active {
+  color: white !important;
+  background-color: var(--dark-primary-color) !important;
+  font-weight: bold !important;
+}
+
+.offcanvas-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-logo {
+  height: 50px;
+  width: 50px;
+  margin-left: 10px;
+}
+
+.menu-app-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}

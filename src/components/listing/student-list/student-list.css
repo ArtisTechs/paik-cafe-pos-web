@@ -1,0 +1,221 @@
+.student-list-container {
+  border-radius: 20px;
+  padding: 1rem;
+  background: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Full size */
+.student-list-full {
+  width: 90%;
+  height: 80vh;
+}
+
+.student-list-full h1 {
+  font-size: 24px;
+}
+
+.student-card-full {
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.student-name-full {
+  font-size: 18px;
+}
+
+.emotion-icon-full {
+  width: 50px;
+  height: 50px;
+}
+
+.student-labels-full {
+  margin-left: 1.5rem;
+}
+
+/* Half size */
+.student-list-half {
+  width: 400px;
+  max-height: 80vh;
+}
+
+.student-list-half h1 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.student-card-half {
+  padding: 10px;
+  margin-bottom: 12px;
+}
+
+.student-name-half {
+  font-size: 14px;
+}
+
+.emotion-icon-half {
+  width: 40px;
+  height: 40px;
+}
+
+/* Small size */
+.student-list-small {
+  width: 250px;
+  height: 400px;
+}
+
+.student-list-small h1 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.student-card-small {
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.student-name-small {
+  font-size: 12px;
+}
+
+.emotion-icon-small {
+  width: 30px;
+  height: 30px;
+}
+
+.student-labels-small {
+  margin-left: 5px;
+}
+
+.student-labels-small,
+.student-labels-half,
+.student-labels-full {
+  display: flex;
+  flex-direction: column;
+}
+
+.student-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 10px;
+  height: 90vh;
+  overflow: auto;
+}
+
+.student-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border-radius: 12px;
+  position: relative;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.student-info {
+  display: flex;
+  align-items: center;
+}
+
+.student-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.student-name {
+  font-weight: 500;
+}
+
+.emotion-icon {
+  border-radius: 10px;
+}
+
+.student-dropdown-full {
+  position: absolute;
+  left: 70px;
+}
+
+.student-dropdown-half {
+  position: absolute;
+  left: 45px;
+}
+
+.student-dropdown-small {
+  position: absolute;
+  left: 35px;
+}
+
+.student-list-divider {
+  height: 2px;
+  background-color: black;
+  margin: 20px auto;
+  width: 100%;
+}
+
+.student-list-button {
+  width: 100px !important;
+}
+
+.student-list-subtitle {
+  font-size: 14px;
+}
+
+.student-card-loader {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.student-card-loader-label {
+  width: 80%;
+  margin-left: 1rem;
+}
+
+.selected-student {
+  background-color: var(--dark-primary-color);
+  color: white;
+}
+
+.student-message-count {
+  background-color: var(--danger-color);
+  color: white;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  border-radius: 15px;
+  align-items: center;
+  margin-left: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.emotion-filter-icons {
+  display: flex;
+}
+
+.emotion-filter-icons-img {
+  width: "32px";
+  height: "32px";
+  border-radius: 15px;
+}
+
+@media (max-width: 600px) {
+  .request-card {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .student-list-half {
+    width: 320px;
+    max-height: 80vh;
+  }
+}
