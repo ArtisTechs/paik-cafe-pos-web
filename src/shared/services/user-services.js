@@ -10,7 +10,7 @@ export const userSignIn = async (userDetails) => {
       `${usersURL}${API_URL.LOGIN}`,
       userDetails
     );
-    return response.data.data;
+    return response.data;
   } catch (error) {
     throw error.response.data;
   }
@@ -22,7 +22,7 @@ export const userSignUp = async (userDetails) => {
       `${usersURL}${API_URL.SIGNUP}`,
       userDetails
     );
-    return response.data.data;
+    return response.data;
   } catch (error) {
     throw error.response.data;
   }

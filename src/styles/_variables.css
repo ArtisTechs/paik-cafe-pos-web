@@ -1,14 +1,15 @@
 :root {
-  --primary-color: #b4edd8;
-  --secondary-color: #041f4a;
+  --primary-color: #ffe709;
+  --secondary-color: #1c2a5b;
   --tertiary-color: #b1abab;
-  --danger-color: #ff6f6f;
+  --danger-color: #ff3030;
   --warning-color: #ffe56f;
   --gradient-start: #b4edd8;
   --gradient-end: #21d1e9;
-  --dark-primary-color: #769f90;
-  --dark-tertiary-color: #5b5959;
+  --dark-primary-color: #c0b235;
+  --dark-tertiary-color: #162147;
   --dark-danger-color: #bb4343;
+  --background-color: #FFFDD0;
   --font-size: 16px;
 
   /* Breakpoints */

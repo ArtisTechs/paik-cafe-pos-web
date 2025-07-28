@@ -8,7 +8,7 @@ import CalmImage from "../../assets/img/Calm.png";
 import AnxiousImage from "../../assets/img/Anxious.png";
 import SadImage from "../../assets/img/Sad.png";
 import FrustratedImage from "../../assets/img/Frustrated.png";
-import logo from "../../assets/img/mindful-mentor-logo.png";
+import logo from "../../assets/img/paik-logo.png";
 
 const CalendarComponent = ({ data, onDateRangeChange }) => {
   const [view, setView] = useState("month"); // 'month' or 'week'

@@ -133,10 +133,9 @@ function App() {
   const handleLoginSuccess = (profileData) => {
     localStorage.setItem(STORAGE_KEY.PROFILE_ID, profileData.id);
     localStorage.setItem(STORAGE_KEY.ROLE, profileData.role);
-    localStorage.setItem(STORAGE_KEY.TOKEN, profileData.token);
     setCurrentUserDetails(profileData);
+    console.log(profileData);
     setLoggedIn(true);
-    setIsAppAdmin(profileData.role === RoleEnum.COUNSELOR);
   };
 
   // Handle logout, clearing localStorage and resetting state

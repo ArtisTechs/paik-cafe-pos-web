@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate from react-router-dom
 import "./navbar.component.css";
 import { Avatar } from "@mui/material";
-import logo from "../../assets/img/mindful-mentor-logo.png";
+import logo from "../../assets/img/paik-logo.png";
 import { ROUTES, stringAvatar } from "../../shared";
 
 const Navbar = ({ title, toggleOffCanvas, onLogout, profile }) => {

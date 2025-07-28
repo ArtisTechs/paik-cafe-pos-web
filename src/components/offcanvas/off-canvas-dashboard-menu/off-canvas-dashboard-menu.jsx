@@ -8,7 +8,7 @@ import {
 import { useNavigate, useLocation } from "react-router-dom";
 import "./off-canvas-dashboard-menu.css";
 import { ROUTES, useGlobalContext } from "../../../shared";
-import logo from "../../../assets/img/mindful-mentor-logo.png";
+import logo from "../../../assets/img/paik-logo.png";
 
 const OffCanvasDashboardMenu = ({ show, handleClose }) => {
   const { currentUserDetails, isAppAdmin } = useGlobalContext();

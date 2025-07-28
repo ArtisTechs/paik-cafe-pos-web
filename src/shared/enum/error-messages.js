@@ -12,7 +12,7 @@ export const EErrorMessages = Object.freeze({
   PASSWORD_REQUIRED: "Password is required.",
   PASSWORD_NOT_MATCH: "Password is required.",
   PASSWORD_INCORRECT: "Password is incorrect.",
-  EMAIL_UNREGISTERED: "Email is not registered.",
+  USER_NOT_FOUND: "Invalid Username.",
   APPOINTMENT_DUPLICATE:
     "An appointment on this date already exists. Please select a different date.",
   DATE_REQUIRED: "Please select a date for your appointment.",
