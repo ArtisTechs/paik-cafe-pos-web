@@ -7,6 +7,10 @@
   color: var(--secondary-color);
 }
 
+.secondary-background-color {
+  background-color: var(--secondary-color);
+}
+
 .gradient-color {
   color: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end));
 }

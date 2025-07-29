@@ -164,36 +164,6 @@ const DashboardPage = ({ onLogout, setFullLoadingHandler }) => {
         </Routes>
       </div>
 
-      {!isAppAdmin && (
-        <ChatWindow setFullLoadingHandler={setFullLoadingHandler} />
-      )}
-
-      {location.pathname !== `${ROUTES.WEB}${ROUTES.DASHBOARD}` && (
-        <button
-          className="home-button-dashboard gradient-background"
-          onClick={() => navigate(`${ROUTES.WEB}${ROUTES.DASHBOARD}`)}
-        >
-          <i className="fas fa-home"></i>
-        </button>
-      )}
-
-      {isAppAdmin &&
-        location.pathname === `${ROUTES.WEB}${ROUTES.DASHBOARD}` && (
-          <button
-            className="chat-head gradient-background shadow"
-            onClick={() => navigate(`${ROUTES.WEB}${ROUTES.CHATS}`)}
-          >
-            {adminMessages.length > 0 && (
-              <div className="messages-count">{adminMessages.length}</div>
-            )}
-            <i className="far fa-message"></i>
-          </button>
-        )}
-
-      <OffCanvasDashboardMenu
-        show={showOffCanvas}
-        handleClose={handleToggleOffCanvas}
-      />
     </div>
   );
 };

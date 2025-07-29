@@ -21,10 +21,7 @@ const Navbar = ({ title, toggleOffCanvas, onLogout, profile }) => {
   };
 
   return (
-    <nav className="navbar gradient-background shadow-black">
-      <div className="navbar-app-logo-title">
-        <h1>Mindful Mentor</h1>
-      </div>
+    <nav className="navbar secondary-background-color shadow-black">
       <div className="navbar-left">
         <button
           className="navbar-toggler"
@@ -56,22 +53,11 @@ const Navbar = ({ title, toggleOffCanvas, onLogout, profile }) => {
                 16
               )}
               alt={`${profile.firstName} ${profile.lastName}`}
-              src={profile.profilePicture}
+              src={logo}
             />
           </button>
 
           <ul className="dropdown-menu dropdown-menu-end">
-            <li>
-              <button
-                className="dropdown-item"
-                onClick={handleProfileClick} // Use button to handle navigation
-              >
-                Profile
-              </button>
-            </li>
-            <li>
-              <div className="dropdown-divider"></div>
-            </li>
             <li>
               <a className="dropdown-item" onClick={handleLogout}>
                 Logout

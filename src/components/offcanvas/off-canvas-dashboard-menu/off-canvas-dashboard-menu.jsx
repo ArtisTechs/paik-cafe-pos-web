@@ -34,7 +34,7 @@ const OffCanvasDashboardMenu = ({ show, handleClose }) => {
       >
         <OffcanvasHeader className="offcanvas-menu-header">
           <img src={logo} alt="logo" className="menu-logo" />
-          <h1 className="menu-app-title">Mindful Mentor</h1>
+          <h1 className="menu-app-title">Paik's Coffee</h1>
           <button className="arrow-close-btn" onClick={handleClose}>
             <i className="bi bi-arrow-left"></i>
           </button>

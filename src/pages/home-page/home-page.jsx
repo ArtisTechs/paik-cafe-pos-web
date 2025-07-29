@@ -77,32 +77,7 @@ const HomePage = ({ setFullLoadingHandler }) => {
 
   return (
     <div className="home-page">
-      {!isAppAdmin && (
-        <div className="emotion-picker-container">
-          <EmotionPicker />
-        </div>
-      )}
-
-      <div className="home-page-cards">
-        {isAppAdmin && (
-          <>
-            <BarGraphEmotion students={students} />
-            <StudentList
-              students={students}
-              size="half"
-              loading={studentLoading}
-              hideDelete={true}
-              showEmotionFilter={true}
-            />
-          </>
-        )}
-
-        <UpcomingEvents
-          appointments={appointments}
-          isAppAdmin={isAppAdmin}
-          setFullLoadingHandler={setFullLoadingHandler}
-        />
-      </div>
+      
     </div>
   );
 };

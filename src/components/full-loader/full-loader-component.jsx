@@ -28,43 +28,43 @@ const FullLoaderComponent = ({ isLoading }) => {
     <div className="loading-overlay">
       {visibleSpinners.includes(0) && (
         <div
-          className="spinner-grow gradient-background me-2"
+          className="spinner-grow primary-color me-2"
           role="status"
         ></div>
       )}
       {visibleSpinners.includes(1) && (
         <div
-          className="spinner-grow gradient-background me-2"
+          className="spinner-grow primary-color me-2"
           role="status"
         ></div>
       )}
       {visibleSpinners.includes(2) && (
         <div
-          className="spinner-grow gradient-background me-2"
+          className="spinner-grow primary-color me-2"
           role="status"
         ></div>
       )}
       {visibleSpinners.includes(3) && (
         <div
-          className="spinner-grow gradient-background me-2"
+          className="spinner-grow primary-color me-2"
           role="status"
         ></div>
       )}
       {visibleSpinners.includes(4) && (
         <div
-          className="spinner-grow gradient-background me-2"
+          className="spinner-grow primary-color me-2"
           role="status"
         ></div>
       )}
       {visibleSpinners.includes(5) && (
         <div
-          className="spinner-grow gradient-background me-2"
+          className="spinner-grow primary-color me-2"
           role="status"
         ></div>
       )}
       {visibleSpinners.includes(6) && (
         <div
-          className="spinner-grow gradient-background me-2"
+          className="spinner-grow primary-color me-2"
           role="status"
         ></div>
       )}
