@@ -40,10 +40,7 @@ function App() {
 
   // Get user details and admin status from context
   const {
-    currentUserDetails,
     setCurrentUserDetails,
-    setIsAppAdmin,
-    setAdminMessages,
     setIsMessagesFetch,
   } = useGlobalContext();
 
@@ -86,7 +83,7 @@ function App() {
       setIsLoading(false);
       handleLogout();
     }
-  }, [setCurrentUserDetails, setIsAppAdmin]);
+  }, [setCurrentUserDetails]);
 
   // Effect to register the global toast service
   useEffect(() => {
@@ -128,9 +125,8 @@ function App() {
   // Handle successful login and store profile details
   const handleLoginSuccess = (profileData) => {
     localStorage.setItem(STORAGE_KEY.PROFILE_ID, profileData.id);
-    localStorage.setItem(STORAGE_KEY.ROLE, profileData.role);
+    localStorage.setItem(STORAGE_KEY.BRANCH_ID, profileData.branchId);
     setCurrentUserDetails(profileData);
-    console.log(profileData);
     setLoggedIn(true);
   };
 
@@ -139,8 +135,6 @@ function App() {
     localStorage.clear();
     setCurrentUserDetails(null);
     setLoggedIn(false);
-    setIsAppAdmin(false);
-    setAdminMessages([]);
     setIsMessagesFetch(false);
   };
 

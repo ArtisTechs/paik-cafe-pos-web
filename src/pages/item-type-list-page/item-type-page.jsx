@@ -14,7 +14,6 @@ import ItemTypeFormDrawer from "../item-type-form-page/item-type-form-drawer";
 
 const ItemTypePage = ({ setFullLoadingHandler }) => {
   const [types, setTypes] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [editingType, setEditingType] = useState(null);
   const [form, setForm] = useState({ name: "", description: "" });
@@ -85,7 +84,7 @@ const ItemTypePage = ({ setFullLoadingHandler }) => {
           await deleteItemType(type.id);
           await refetchTypes();
           toastService.show(
-            `Item type "${type.name}" deleted successfully.`,
+            `Category "${type.name}" deleted successfully.`,
             "success-toast"
           );
         } catch (error) {
@@ -104,16 +103,16 @@ const ItemTypePage = ({ setFullLoadingHandler }) => {
   const handleSubmit = async () => {
     setFullLoadingHandler(true);
     const payload = {
-      name: form.name?.trim() || "",
+      name: capitalizeText(form.name?.trim()) || "",
       description: form.description?.trim() || "",
     };
     try {
       if (editingType) {
         await editItemType(editingType.id, payload);
-        toastService.show("Item type updated.", "success-toast");
+        toastService.show("Category updated.", "success-toast");
       } else {
         await addItemType(payload);
-        toastService.show("Item type added.", "success-toast");
+        toastService.show("Category added.", "success-toast");
       }
       setShowForm(false);
       await refetchTypes();
@@ -122,7 +121,7 @@ const ItemTypePage = ({ setFullLoadingHandler }) => {
         error?.data?.code === "ITEM_TYPE_EXISTS" ||
         error?.data?.errorCode === "ITEM_TYPE_EXISTS"
       ) {
-        setNameError("Item type name already exists.");
+        setNameError("Category name already exists.");
       } else {
         toastService.show(EErrorMessages.CONTACT_ADMIN, "danger-toast");
       }

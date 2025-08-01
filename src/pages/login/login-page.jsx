@@ -61,7 +61,6 @@ const LoginPage = ({ setFullLoadingHandler, onLoginSuccess }) => {
         password: formData.password,
       });
 
-      console.log(user);
       toastService.show(ESuccessMessages.LOGIN, "success-toast");
       onLoginSuccess(user);
     } catch (error) {

@@ -6,3 +6,4 @@ export * from "./date-services.js";
 export * from "./messages-services.js";
 export * from "./order-services.js";
 export * from "./item-type-services.js";
+export * from "./item-services.js";

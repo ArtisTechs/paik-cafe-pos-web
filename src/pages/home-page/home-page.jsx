@@ -22,7 +22,6 @@ const FILTER_OPTIONS = [
 
 const HomePage = ({ setFullLoadingHandler }) => {
   const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("today");
   const [editOrder, setEditOrder] = useState(null);
 
@@ -40,7 +39,6 @@ const HomePage = ({ setFullLoadingHandler }) => {
 
   const loadOrders = async () => {
     setFullLoadingHandler(true);
-    setLoading(true);
 
     const { startDate, endDate } = getFilterDates(filter);
 
@@ -56,7 +54,6 @@ const HomePage = ({ setFullLoadingHandler }) => {
     } catch (error) {
       toastService.show(EErrorMessages.CONTACT_ADMIN, "danger-toast");
     } finally {
-      setLoading(false);
       setFullLoadingHandler(false);
     }
   };
@@ -152,16 +149,14 @@ const HomePage = ({ setFullLoadingHandler }) => {
 
       <div className="order-grid-scroll-container">
         <div className="order-grid">
-          {loading ? (
-            <p>Loading orders...</p>
-          ) : orders.length === 0 ? (
+          {orders.length === 0 ? (
             <p>No orders found.</p>
           ) : (
             orders.map((order) => (
               <div key={order.id} className="order-card">
                 {order.orderStatus != "DONE" && (
                   <button
-                    className="edit-btn"
+                    className="edit-btn-home"
                     onClick={() => handleEditOrder(order)}
                     title="Edit Order"
                   >
@@ -179,6 +174,15 @@ const HomePage = ({ setFullLoadingHandler }) => {
                     ></i>
                   )}
                 </h3>
+                <p className="mb-0">
+                  <span className="badge ">
+                    {order.orderType === "DINE_IN"
+                      ? "Dine In"
+                      : order.orderType === "TAKE_OUT"
+                      ? "Take Out"
+                      : order.orderType}
+                  </span>
+                </p>
                 <p>
                   Status: <span className="fw-bold">{order.orderStatus}</span>
                 </p>

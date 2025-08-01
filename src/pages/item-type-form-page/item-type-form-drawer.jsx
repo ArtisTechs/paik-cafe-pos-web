@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import "./item-type-form-drawer.css";
 
 const ItemTypeFormDrawer = ({
@@ -11,23 +11,12 @@ const ItemTypeFormDrawer = ({
   nameError,
   setNameError,
 }) => {
-  const [visible, setVisible] = useState(open);
   const backdropRef = useRef();
 
-  useEffect(() => {
-    if (open) setVisible(true);
-    else {
-      const timeout = setTimeout(() => setVisible(false), 300);
-      return () => clearTimeout(timeout);
-    }
-  }, [open]);
-
-  useEffect(() => {
+  React.useEffect(() => {
     // Reset error when dialog opens or closes
     if (!open) setNameError && setNameError("");
   }, [open, setNameError]);
-
-  if (!open && !visible) return null;
 
   const handleBackdropClick = (e) => {
     if (e.target === backdropRef.current) {
@@ -52,16 +41,17 @@ const ItemTypeFormDrawer = ({
 
   return (
     <div
+
       ref={backdropRef}
-      className={`item-type-form-drawer-backdrop${open ? " open" : ""}`}
+      className={`form-backdrop${open ? " open" : ""}`}
       onClick={handleBackdropClick}
     >
       <div
-        className={`item-type-form-drawer${open ? " open" : ""}`}
+        className={`form-drawer${open ? " open" : ""}`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="form-header">
-          <h3>{editingType ? "Edit" : "Add"} Item Type</h3>
+          <h3>{editingType ? "Edit" : "Add"} Category</h3>
         </div>
 
         <form className="form-body" onSubmit={handleSubmit} autoComplete="off">
@@ -70,9 +60,9 @@ const ItemTypeFormDrawer = ({
             <input
               className="form-input"
               name="name"
+              placeholder="Enter category name"
               value={form.name}
               onChange={handleInputChange}
-              required
               autoFocus
             />
             {nameError && <div className="form-error">{nameError}</div>}
@@ -82,6 +72,7 @@ const ItemTypeFormDrawer = ({
             <input
               className="form-input"
               name="description"
+              placeholder="Enter category description"
               value={form.description}
               onChange={handleInputChange}
             />

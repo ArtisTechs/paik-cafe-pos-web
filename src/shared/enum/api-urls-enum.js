@@ -14,7 +14,6 @@ export const API_URL = Object.freeze({
   LIST: "/list",
   APPOINTMENTS: "/appointments",
   UPLOAD_PROFILE_PICTURE: "/uploadProfilePicture",
-  MOODS: "/moods",
   ADD: "/add",
   CHAT: "/chat",
   SEND_MESSAGE: "/sendMessage",
@@ -22,8 +21,7 @@ export const API_URL = Object.freeze({
   QUEUE: "/queue",
   MESSAGES: "/messages",
   RECEIVER: "/receiver",
-  STUDENT_MOOD_TODAY: "/students-with-mood-today",
-  JOURNALS: "/journals",
   ORDERS: "/orders",
   ITEM_TYPES: "/item-types",
+  ITEMS: "/items",
 });

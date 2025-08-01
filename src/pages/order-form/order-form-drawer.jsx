@@ -22,8 +22,6 @@ const OrderFormDrawer = ({ open, order, onClose, onSaved }) => {
     // eslint-disable-next-line
   }, [open, order]);
 
-  if (!open) return null;
-
   const handleBackdropClick = (e) => {
     if (e.target === drawerRef.current) {
       onClose && onClose();
@@ -57,11 +55,11 @@ const OrderFormDrawer = ({ open, order, onClose, onSaved }) => {
   return (
     <div
       ref={drawerRef}
-      className={`order-edit-drawer-backdrop${open ? " open" : ""}`}
+      className={`form-backdrop${open ? " open" : ""}`}
       onClick={handleBackdropClick}
     >
       <div
-        className={`order-edit-drawer${open ? " open" : ""}`}
+        className={`form-drawer${open ? " open" : ""}`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="form-header">

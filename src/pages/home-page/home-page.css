@@ -99,7 +99,7 @@
   width: 90%;
 }
 
-.edit-btn {
+.edit-btn-home {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -112,6 +112,6 @@
   padding: 0.2rem;
   transition: color 0.2s;
 }
-.edit-btn:hover {
+.edit-btn-home:hover {
   color: #007bff;
 }

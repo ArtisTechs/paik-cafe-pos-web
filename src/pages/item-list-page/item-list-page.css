@@ -1,0 +1,104 @@
+.item-list-page {
+  padding: 1.2rem;
+}
+
+.item-grid-scroll-container {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  height: 75vh;
+  background-color: var(--primary-color);
+  padding: 1rem;
+  border-radius: 12px;
+  margin-top: 1rem;
+}
+
+.item-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.1rem;
+}
+
+.item-card {
+  position: relative;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #0002;
+  padding: 1.2rem;
+  position: relative;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.item-card-actions {
+  display: flex;
+  gap: 8px;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  z-index: 1;
+}
+
+.edit-btn-item,
+.delete-btn-item {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px 6px;
+  font-size: 1.1em;
+}
+
+.edit-btn-item {
+  color: var(--secondary-color);
+}
+
+.edit-btn-item:hover {
+  color: var(--dark-secondary-color);
+}
+
+.delete-btn-item {
+  color: var(--danger-color);
+}
+
+.delete-btn-item:hover {
+  color: var(--danger-color);
+}
+
+.button-container-item-card {
+  margin-top: 1.2rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.badge {
+  background: #ececec;
+  color: #444;
+  padding: 0.2em 0.7em;
+  border-radius: 7px;
+  font-size: 0.95em;
+  margin-bottom: 0.3em;
+  display: inline-block;
+}
+
+.item-photo-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.item-photo {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.item-photo-icon {
+  font-size: 200px;
+  color: #bcbcbc;
+  padding: 2px;
+}

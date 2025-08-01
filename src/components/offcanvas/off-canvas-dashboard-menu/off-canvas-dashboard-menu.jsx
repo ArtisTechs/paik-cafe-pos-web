@@ -7,11 +7,10 @@ import {
 } from "react-bootstrap";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./off-canvas-dashboard-menu.css";
-import { ROUTES, useGlobalContext } from "../../../shared";
+import { ROUTES } from "../../../shared";
 import logo from "../../../assets/img/paik-logo.png";
 
 const OffCanvasDashboardMenu = ({ show, handleClose }) => {
-  const { currentUserDetails, isAppAdmin } = useGlobalContext();
   const navigate = useNavigate();
   const location = useLocation(); // Get the current location
 
@@ -65,6 +64,30 @@ const OffCanvasDashboardMenu = ({ show, handleClose }) => {
               >
                 <i className="fa-solid fa-tags"></i>
                 Category
+              </Button>
+            </li>
+            <li>
+              <Button
+                className={`dashbaord-menu-item ${isActive(
+                  `${ROUTES.WEB}${ROUTES.ITEMS}`
+                )}`}
+                onClick={() => handleNavigation(`${ROUTES.WEB}${ROUTES.ITEMS}`)}
+              >
+                <i className="fa-solid fa-boxes-packing"></i>
+                Menu Items
+              </Button>
+            </li>
+            <li>
+              <Button
+                className={`dashbaord-menu-item ${isActive(
+                  `${ROUTES.WEB}${ROUTES.QR_PAGE}`
+                )}`}
+                onClick={() =>
+                  handleNavigation(`${ROUTES.WEB}${ROUTES.QR_PAGE}`)
+                }
+              >
+                <i className="fa-solid fa-qrcode"></i>
+                Scan QR Code
               </Button>
             </li>
           </ul>

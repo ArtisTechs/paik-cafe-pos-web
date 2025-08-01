@@ -168,7 +168,7 @@
   right: 0;
   padding: 1rem;
   border-bottom: 1px solid #1d1d1d77;
-  box-shadow: 0 3px 16px -4px rgba(0,0,0,0.12);
+  box-shadow: 0 3px 16px -4px rgba(0, 0, 0, 0.12);
   z-index: 100;
   background-color: white;
 }
@@ -176,6 +176,8 @@
 .form-body {
   margin-top: 4.5rem;
   padding: 1rem;
+  height: 80vh;
+  overflow-y: auto;
 }
 
 .form-footer {
@@ -188,6 +190,9 @@
   bottom: 1rem;
   right: 0;
   width: 100%;
+  border-top: 1px solid #1d1d1d77;
+  padding-top: 1rem;
+  background-color: white;
 }
 
 .form-input {
@@ -209,11 +214,18 @@
   font-style: italic;
 }
 
+.form-checkbox {
+  accent-color: var(--primary-color);
+  width: 18px;
+  height: 18px;
+}
 
-@media (max-width: 480px) {
-  .button-container {
-    flex-direction: column-reverse;
-  }
+.form-helper {
+  font-size: 0.85rem;
+  color: #6c757d;
+  font-style: italic;
+  margin-top: 4px;
+  margin-bottom: 15px;
 }
 
 .white-button {
@@ -270,12 +282,6 @@
   box-shadow: 0 0 5px 2px var(--primary-color) !important;
 }
 
-@media (max-width: 480px) {
-  .primary-input {
-    width: 280px;
-  }
-}
-
 /* toast */
 .success-toast {
   background: var(--success-color);
@@ -295,4 +301,62 @@
 .form-label {
   font-size: 16px;
   font-weight: bold;
+}
+
+.form-backdrop {
+  position: fixed;
+  z-index: 99;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(30, 30, 30, 0.22);
+  backdrop-filter: blur(1.5px);
+  transition: opacity 0.25s;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.form-backdrop.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.form-drawer {
+  background: #fff;
+  width: 380px;
+  max-width: 98vw;
+  height: 100vh;
+  box-shadow: -8px 0 32px 0 rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  transform: translateX(110%) scale(0.97);
+  opacity: 0;
+  transition: transform 0.28s cubic-bezier(0.51, 0.04, 0.57, 1.01),
+    opacity 0.23s cubic-bezier(0.51, 0.04, 0.57, 1.01);
+}
+
+.form-drawer.open {
+  transform: translateX(0) scale(1);
+  opacity: 1;
+}
+
+@media (max-width: 600px) {
+  .form-drawer {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .button-container {
+    flex-direction: column-reverse;
+  }
+
+  .primary-input {
+    width: 280px;
+  }
 }
