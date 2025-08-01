@@ -1,83 +1,253 @@
 import React, { useEffect, useState } from "react";
 import "./home-page.css";
-import EmotionPicker from "../../components/emotion-picker/emotion-picker.component";
-import UpcomingEvents from "../../components/upcoming-events/upcoming-events.component";
-import StudentList from "../../components/listing/student-list/student-list";
 import {
-  AppointmentStatusEnum,
+  deleteOrder,
   EErrorMessages,
-  fetchAppointmentList,
-  getStudentsWithMoodToday,
+  fetchOrderList,
+  formatDate,
+  getFilterDates,
+  modalService,
   toastService,
-  useGlobalContext,
+  updateOrderStatus,
 } from "../../shared";
-import BarGraphEmotion from "../../components/bar-graph-emotion/bar-graph-emotion";
+import OrderFormDrawer from "../order-form/order-form-drawer";
+
+const FILTER_OPTIONS = [
+  { label: "Today", value: "today" },
+  { label: "Yesterday", value: "yesterday" },
+  { label: "Last 7 Days", value: "last7" },
+  { label: "Last 30 Days", value: "last30" },
+  { label: "This Month", value: "thisMonth" },
+];
 
 const HomePage = ({ setFullLoadingHandler }) => {
-  const { currentUserDetails, isAppAdmin } = useGlobalContext();
-  const [appointments, setAppointments] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [students, setStudents] = useState([]);
-  const [studentLoading, setStudentLoading] = useState(true);
+  const [filter, setFilter] = useState("today");
+  const [editOrder, setEditOrder] = useState(null);
+
+  const handleEditOrder = (order) => {
+    setEditOrder(order);
+  };
+  const handleCloseDrawer = () => {
+    setEditOrder(null);
+  };
 
   useEffect(() => {
-    if (currentUserDetails.id) {
-      loadAppointments();
-    }
-    if (isAppAdmin) {
-      loadStudentsWithMoodToday(); // Fetch students' mood data if user is an admin
-    }
-  }, [currentUserDetails.id, isAppAdmin]);
+    loadOrders();
+    // eslint-disable-next-line
+  }, [filter]);
 
-  const loadAppointments = async () => {
+  const loadOrders = async () => {
+    setFullLoadingHandler(true);
     setLoading(true);
-    const today = new Date().toISOString().split("T")[0];
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    const finalEndDate = tomorrow.toISOString().split("T")[0];
+
+    const { startDate, endDate } = getFilterDates(filter);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-
-      const userId = isAppAdmin ? null : currentUserDetails.id;
-
-      const response = await fetchAppointmentList({
-        userId: userId,
-        sortBy: "scheduledDate",
-        sortDirection: "DSC",
-        startDate: today,
-        endDate: isAppAdmin ? finalEndDate : null,
-        status: isAppAdmin ? AppointmentStatusEnum.APPROVED : null,
+      const response = await fetchOrderList({
+        startDate,
+        endDate,
+        sortBy: "orderTime",
+        sortDirection: "ASC",
       });
 
-      setAppointments(response.content);
+      setOrders(response.content || response);
     } catch (error) {
       toastService.show(EErrorMessages.CONTACT_ADMIN, "danger-toast");
     } finally {
       setLoading(false);
+      setFullLoadingHandler(false);
     }
   };
 
-  const loadStudentsWithMoodToday = async () => {
-    setStudentLoading(true);
+  const handleMarkAsDone = async (orderId) => {
+    setFullLoadingHandler(true);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-
-      const response = await getStudentsWithMoodToday({
-        sortBy: "lastName",
-        ignorePagination: true,
-      });
-      setStudents(response);
+      await updateOrderStatus(orderId, "DONE");
+      await loadOrders();
+      toastService.show("Order marked as DONE", "success-toast");
     } catch (error) {
       toastService.show(EErrorMessages.CONTACT_ADMIN, "danger-toast");
     } finally {
-      setStudentLoading(false);
+      setFullLoadingHandler(false);
     }
   };
 
+  const handleDeleteOrder = (order) => {
+    modalService.show({
+      title: "Delete Order?",
+      message: `Are you sure you want to delete Order #${order.orderNo}? This action cannot be undone.`,
+      confirmText: "Delete",
+      confirmButtonClass: "danger-button",
+      onConfirm: async () => {
+        setFullLoadingHandler(true);
+        try {
+          await deleteOrder(order.id);
+          await loadOrders();
+          toastService.show(
+            `Order #${order.orderNo} deleted successfully.`,
+            "success-toast"
+          );
+        } catch (error) {
+          toastService.show(EErrorMessages.CONTACT_ADMIN, "danger-toast");
+        } finally {
+          setFullLoadingHandler(false);
+        }
+      },
+      onCancel: () => {},
+    });
+  };
+
+  const totalOrders = orders.length;
+  const totalIncome = orders.reduce(
+    (sum, order) => sum + (order.totalPrice || 0),
+    0
+  );
+  const totalDoneOrders = orders.filter(
+    (order) => order.orderStatus === "DONE"
+  ).length;
+
+  const { startDate, endDate } = getFilterDates(filter);
+  const displayStart = formatDate(startDate, "MMM DD, YYYY");
+  const displayEnd = formatDate(endDate, "MMM DD, YYYY");
+
   return (
     <div className="home-page">
-      
+      <h2>Orders</h2>
+      <div className="order-summary-section">
+        <div className="summary-cards">
+          <div className="summary-card">
+            <div className="summary-title">Total Orders</div>
+            <div className="summary-value">{totalOrders}</div>
+          </div>
+          <div className="summary-card">
+            <div className="summary-title">Total Income</div>
+            <div className="summary-value">₱{totalIncome.toFixed(2)}</div>
+          </div>
+          <div className="summary-card">
+            <div className="summary-title">Done Orders</div>
+            <div className="summary-value">{totalDoneOrders}</div>
+          </div>
+        </div>
+        <div className="filter-dropdown">
+          <select
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+            className="order-filter-select"
+          >
+            {FILTER_OPTIONS.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
+            ))}
+          </select>
+          <div className="filter-date-range">
+            <span>
+              {displayStart} - {displayEnd}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div className="order-grid-scroll-container">
+        <div className="order-grid">
+          {loading ? (
+            <p>Loading orders...</p>
+          ) : orders.length === 0 ? (
+            <p>No orders found.</p>
+          ) : (
+            orders.map((order) => (
+              <div key={order.id} className="order-card">
+                {order.orderStatus != "DONE" && (
+                  <button
+                    className="edit-btn"
+                    onClick={() => handleEditOrder(order)}
+                    title="Edit Order"
+                  >
+                    <i className="fa fa-pencil" />
+                  </button>
+                )}
+
+                <h3 className="fw-bold">
+                  Order #{order.orderNo}{" "}
+                  {order.orderStatus === "DONE" && (
+                    <i
+                      className="fa fa-check-circle"
+                      style={{ color: "#28a745", marginLeft: "0.5rem" }}
+                      title="Completed"
+                    ></i>
+                  )}
+                </h3>
+                <p>
+                  Status: <span className="fw-bold">{order.orderStatus}</span>
+                </p>
+                <p>
+                  Total:{" "}
+                  <span className="fw-bold">
+                    ₱{order.totalPrice.toFixed(2)}
+                  </span>
+                </p>
+                <p>
+                  Cash:{" "}
+                  <span className="fw-bold">₱{order.cash?.toFixed(2)}</span>
+                </p>
+                <p>
+                  Change:{" "}
+                  {order.changeAmount != null ? (
+                    <span className="fw-bold">
+                      ₱{order.changeAmount.toFixed(2)}
+                    </span>
+                  ) : (
+                    "—"
+                  )}
+                </p>
+                <p className="m-0 fw-bold">Orders:</p>
+                <ul>
+                  {order.items.map((item, idx) => (
+                    <li className="fw-bold" key={idx}>
+                      {item.name} - {order.variation[idx]} x{" "}
+                      {order.quantity[idx]}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mb-5 italic">
+                  <small>
+                    {formatDate(order.orderTime, "YYYY-MM-DD HH:mm:ss")}
+                  </small>
+                </div>
+
+                <div className="button-container-order-card">
+                  {order.orderStatus !== "DONE" && (
+                    <button
+                      className="success-button"
+                      onClick={() => handleMarkAsDone(order.id)}
+                    >
+                      Mark as Done
+                    </button>
+                  )}
+                  <button
+                    className="danger-button"
+                    onClick={() => handleDeleteOrder(order)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+      </div>
+
+      <OrderFormDrawer
+        open={!!editOrder}
+        order={editOrder}
+        onClose={handleCloseDrawer}
+        onSaved={() => {
+          handleCloseDrawer();
+          loadOrders();
+        }}
+      />
     </div>
   );
 };

@@ -54,97 +54,19 @@ const OffCanvasDashboardMenu = ({ show, handleClose }) => {
                 Dashboard
               </Button>
             </li>
-            {isAppAdmin && (
-              <>
-                <li>
-                  <Button
-                    className={`dashbaord-menu-item ${isActive(
-                      `${ROUTES.WEB}${ROUTES.CHATS}`
-                    )}`}
-                    onClick={() =>
-                      handleNavigation(`${ROUTES.WEB}${ROUTES.CHATS}`)
-                    }
-                  >
-                    <i className="fas fa-comment"></i>
-                    Chats
-                  </Button>
-                </li>
-                <li>
-                  <Button
-                    className={`dashbaord-menu-item ${isActive(
-                      `${ROUTES.WEB}${ROUTES.STUDENTS}`
-                    )}`}
-                    onClick={() =>
-                      handleNavigation(`${ROUTES.WEB}${ROUTES.STUDENTS}`)
-                    }
-                  >
-                    <i className="fas fa-graduation-cap"></i>
-                    Students
-                  </Button>
-                </li>
-              </>
-            )}
             <li>
               <Button
                 className={`dashbaord-menu-item ${isActive(
-                  `${ROUTES.WEB}${ROUTES.CALENDAR}`
+                  `${ROUTES.WEB}${ROUTES.ITEM_TYPE}`
                 )}`}
                 onClick={() =>
-                  handleNavigation(`${ROUTES.WEB}${ROUTES.CALENDAR}`)
+                  handleNavigation(`${ROUTES.WEB}${ROUTES.ITEM_TYPE}`)
                 }
               >
-                <i className="far fa-calendar"></i>
-                Calendar
+                <i className="fa-solid fa-tags"></i>
+                Category
               </Button>
             </li>
-
-            <li>
-              <Button
-                className={`dashbaord-menu-item ${isActive(
-                  `${ROUTES.WEB}${ROUTES.APPOINTMENTS}`
-                )}`}
-                onClick={() =>
-                  handleNavigation(`${ROUTES.WEB}${ROUTES.APPOINTMENTS}`)
-                }
-              >
-                <i className="far fa-calendar-check"></i>
-                Appointment
-              </Button>
-            </li>
-            {isAppAdmin && (
-              <>
-                <li>
-                  <Button
-                    className={`dashbaord-menu-item ${isActive(
-                      `${ROUTES.WEB}${ROUTES.ACCOUNT_REQUEST}`
-                    )}`}
-                    onClick={() =>
-                      handleNavigation(`${ROUTES.WEB}${ROUTES.ACCOUNT_REQUEST}`)
-                    }
-                  >
-                    <i className="fas fa-user-plus"></i>
-                    Account Request
-                  </Button>
-                </li>
-              </>
-            )}
-            {!isAppAdmin && (
-              <>
-                <li>
-                  <Button
-                    className={`dashbaord-menu-item ${isActive(
-                      `${ROUTES.WEB}${ROUTES.JOURNAL}`
-                    )}`}
-                    onClick={() =>
-                      handleNavigation(`${ROUTES.WEB}${ROUTES.JOURNAL}`)
-                    }
-                  >
-                    <i className="fas fa-book"></i>
-                    Journal
-                  </Button>
-                </li>
-              </>
-            )}
           </ul>
         </OffcanvasBody>
       </Offcanvas>

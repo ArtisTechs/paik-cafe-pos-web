@@ -31,14 +31,11 @@ export const userSignUp = async (userDetails) => {
 export const getUserDetails = async (userId) => {
   try {
     const storedToken = await getTokenAsync();
-    const response = await axios.get(
-      `${usersURL}${API_URL.PROFILE}/${userId}`,
-      {
-        headers: {
-          ...(storedToken ? { Authorization: `Bearer ${storedToken}` } : {}),
-        },
-      }
-    );
+    const response = await axios.get(`${usersURL}/${userId}`, {
+      headers: {
+        ...(storedToken ? { Authorization: `Bearer ${storedToken}` } : {}),
+      },
+    });
     return response.data;
   } catch (error) {
     throw error.response;
@@ -79,36 +76,6 @@ export const saveUserProfile = async (userId, profileData) => {
   }
 };
 
-// Fetch student list with filters, pagination, and sorting
-export const fetchStudentList = async ({
-  status = "",
-  searchName = "",
-  page = 0,
-  sortBy = "lastName",
-  sortDirection = "ASC",
-  ignorePagination = false,
-}) => {
-  try {
-    const storedToken = await getTokenAsync();
-    const response = await axios.get(`${usersURL}${API_URL.LIST}`, {
-      params: {
-        status,
-        role: RoleEnum.STUDENT,
-        searchName,
-        page,
-        sortBy,
-        sortDirection,
-        ignorePagination,
-      },
-      headers: {
-        ...(storedToken ? { Authorization: `Bearer ${storedToken}` } : {}),
-      },
-    });
-    return response.data;
-  } catch (error) {
-    throw error.response;
-  }
-};
 
 export const changeUserStatus = async (id, status) => {
   try {
@@ -139,36 +106,6 @@ export const deleteUser = async (userId) => {
     return response.data; // Return the response from the server (success message)
   } catch (error) {
     throw error.response.data; // Handle error
-  }
-};
-
-export const fetchCounselorList = async ({
-  status = "",
-  searchName = "",
-  page = 0,
-  size = null,
-  sortBy = "lastName",
-  sortDirection = "ASC",
-}) => {
-  try {
-    const storedToken = await getTokenAsync();
-    const response = await axios.get(`${usersURL}${API_URL.LIST}`, {
-      params: {
-        status,
-        role: RoleEnum.COUNSELOR,
-        searchName,
-        page,
-        size,
-        sortBy,
-        sortDirection,
-      },
-      headers: {
-        ...(storedToken ? { Authorization: `Bearer ${storedToken}` } : {}),
-      },
-    });
-    return response.data;
-  } catch (error) {
-    throw error.response;
   }
 };
 

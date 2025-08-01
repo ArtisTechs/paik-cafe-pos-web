@@ -4,6 +4,7 @@ export const ROUTES = {
   WEB: "/web",
   DASHBOARD: "/dashboard",
   HOME: "/home",
+  ITEM_TYPE : "/item-type",
   PROFILE: "/profile",
   CALENDAR: "/calendar",
   COUNSELOR: "/counselor",

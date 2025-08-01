@@ -24,4 +24,6 @@ export const API_URL = Object.freeze({
   RECEIVER: "/receiver",
   STUDENT_MOOD_TODAY: "/students-with-mood-today",
   JOURNALS: "/journals",
+  ORDERS: "/orders",
+  ITEM_TYPES: "/item-types",
 });

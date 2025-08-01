@@ -18,7 +18,6 @@ import {
   toastService,
   modalService,
   ROUTES,
-  RoleEnum,
   EErrorMessages,
   getUserDetails,
 } from "./shared";
@@ -62,17 +61,14 @@ function App() {
   // Effect to check login status and load user details
   useEffect(() => {
     const profileID = localStorage.getItem(STORAGE_KEY.PROFILE_ID);
-    const role = localStorage.getItem(STORAGE_KEY.ROLE);
 
     if (profileID) {
       setLoggedIn(true);
-      setIsAppAdmin(role === RoleEnum.COUNSELOR);
 
       const fetchUserDetails = async () => {
         try {
           const storedProfile = await getUserDetails(profileID);
           setCurrentUserDetails(storedProfile);
-          setIsAppAdmin(storedProfile.role === RoleEnum.COUNSELOR);
         } catch (error) {
           toastService.show(EErrorMessages.CONTACT_ADMIN, "danger-toast");
           handleLogout();
