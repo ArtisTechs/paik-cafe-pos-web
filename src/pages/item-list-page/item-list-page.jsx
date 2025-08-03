@@ -20,7 +20,7 @@ const ItemListPage = ({ setFullLoadingHandler }) => {
     itemTypeId: "",
     variation: [],
     variationInput: "",
-    price: "",
+    price: [],
     photo: "",
     inStock: true,
   };
@@ -74,6 +74,11 @@ const ItemListPage = ({ setFullLoadingHandler }) => {
       ...item,
       itemTypeId: item.itemType?.id || "",
       variationInput: item.variation ? item.variation.join(", ") : "",
+      priceInput: Array.isArray(item.price)
+        ? item.price.join(", ")
+        : item.price
+        ? item.price.toString()
+        : "",
     };
     setEditingItem(item);
     setForm(editForm);
@@ -96,7 +101,7 @@ const ItemListPage = ({ setFullLoadingHandler }) => {
       description: form.description?.trim() || "",
       itemTypeId: form.itemTypeId,
       variation: (form.variation || []).map((v) => capitalizeText(v.trim())),
-      price: parseFloat(form.price),
+      price: Array.isArray(form.price) ? form.price : [parseFloat(form.price)],
       photo: form.photo?.trim() || "",
       inStock: !!form.inStock,
     };
@@ -195,20 +200,50 @@ const ItemListPage = ({ setFullLoadingHandler }) => {
                   <span className="badge">{item?.itemType?.name || "—"}</span>
                 </div>
                 <h3 className="fw-bold m-0">{item?.name}</h3>
+                
                 <div className="text-muted">{item?.description}</div>
+
                 <div>
-                  <span className="fw-bold">Price:</span> ₱
-                  {item?.price?.toFixed(2)}
+                  <span className="fw-bold">Price:</span>
+                  {item?.variation &&
+                  item.variation.length > 0 &&
+                  Array.isArray(item.price) ? (
+                    <div style={{ marginLeft: 8 }}>
+                      {item.variation.map((v, i) => {
+                        const priceVal = item.price[i];
+                        return (
+                          <div key={v}>
+                            <span className="fw-bold">{v}</span>
+                            {": "}
+                            {priceVal !== undefined &&
+                            priceVal !== null &&
+                            !isNaN(priceVal) &&
+                            priceVal !== "" ? (
+                              <>₱{Number(priceVal).toFixed(2)}</>
+                            ) : (
+                              "-"
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ) : Array.isArray(item.price) &&
+                    item.price.length > 0 &&
+                    item.price[0] !== undefined &&
+                    item.price[0] !== null &&
+                    !isNaN(item.price[0]) &&
+                    item.price[0] !== "" ? (
+                    <span style={{ marginLeft: 8 }}>
+                      ₱{Number(item.price[0]).toFixed(2)}
+                    </span>
+                  ) : (
+                    <span style={{ marginLeft: 8 }}>—</span>
+                  )}
                 </div>
+
                 <div>
                   <span className="fw-bold">In Stock:</span>{" "}
                   {item?.inStock ? "Yes" : "No"}
-                </div>
-                <div>
-                  <span className="fw-bold">Variation:</span>{" "}
-                  {item?.variation && item?.variation.length > 0
-                    ? item?.variation.join(", ")
-                    : "—"}
                 </div>
               </div>
             ))

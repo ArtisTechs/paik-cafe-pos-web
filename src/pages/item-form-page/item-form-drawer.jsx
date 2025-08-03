@@ -47,6 +47,14 @@ const ItemFormDrawer = ({
     setFormErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
+  const parsePriceInput = (value) =>
+    value
+      .split(",")
+      .map((v) => v.trim())
+      .filter((v) => v !== "")
+      .map((v) => Number(v))
+      .filter((v) => !isNaN(v) && v >= 0);
+
   const handleVariationChange = (e) => {
     const value = e.target.value;
     const variations = value
@@ -60,12 +68,27 @@ const ItemFormDrawer = ({
       ...prev,
       variation: variations,
       variationInput: value,
+      price: [],
+      priceInput: "",
     }));
 
     setFormErrors((prev) => ({
       ...prev,
       variation: hasDuplicate ? "Duplicate variations are not allowed." : "",
+      price: "",
     }));
+  };
+
+  const handlePriceChange = (e) => {
+    const value = e.target.value;
+    const sanitized = value.replace(/[^0-9.,]/g, "");
+    const priceArr = parsePriceInput(sanitized);
+    setForm((prev) => ({
+      ...prev,
+      priceInput: sanitized,
+      price: priceArr,
+    }));
+    setFormErrors((prev) => ({ ...prev, price: "" }));
   };
 
   const handleSubmit = (e) => {
@@ -78,8 +101,19 @@ const ItemFormDrawer = ({
     if (!form.itemTypeId) {
       errors.itemTypeId = "Item type is required.";
     }
-    if (!form.price || isNaN(form.price)) {
-      errors.price = "Price is required.";
+
+    if ((form.variation?.length || 0) > 0) {
+      if (!form.price || form.price.length !== form.variation.length) {
+        errors.price = `Enter ${form.variation.length} price${
+          form.variation.length > 1 ? "s" : ""
+        }, one for each variation.`;
+      } else if (form.price.some((p) => isNaN(p) || p === "")) {
+        errors.price = "Price must be a valid number for all variations.";
+      }
+    } else {
+      if (!form.price || !form.price[0] || isNaN(form.price[0])) {
+        errors.price = "Price is required and must be a valid number.";
+      }
     }
 
     setFormErrors(errors);
@@ -204,14 +238,29 @@ const ItemFormDrawer = ({
             </label>
             <input
               className="form-input"
-              type="number"
-              name="price"
-              step="0.01"
-              min="0"
-              value={form?.price || ""}
-              onChange={handleInputChange}
-              placeholder="Enter item price"
+              type="text"
+              name="priceInput"
+              value={form?.priceInput || ""}
+              onChange={handlePriceChange}
+              placeholder={
+                form?.variation && form.variation.length > 0
+                  ? `Enter ${form.variation.length} price${
+                      form.variation.length > 1 ? "s" : ""
+                    } separated by comma (e.g. 20, 25)`
+                  : "Enter price"
+              }
+              autoComplete="off"
             />
+            {form?.variation && form.variation.length > 0 && (
+              <small className="form-helper">
+                {form.variation.map((v, i) => (
+                  <span key={v}>
+                    {v}: ₱{form.price && form.price[i] ? form.price[i] : "-"}
+                    {i < form.variation.length - 1 ? ", " : ""}
+                  </span>
+                ))}
+              </small>
+            )}
             {formErrors.price && (
               <div className="form-error">{formErrors.price}</div>
             )}

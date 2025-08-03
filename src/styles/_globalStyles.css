@@ -200,6 +200,7 @@
   padding: 0.4rem;
   border: 1px solid #6b6b6b7f;
   border-radius: 15px;
+  font-size: 14px;
 }
 
 .form-input:focus {
