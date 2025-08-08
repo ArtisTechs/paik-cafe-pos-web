@@ -96,6 +96,25 @@ const HomePage = ({ setFullLoadingHandler }) => {
     });
   };
 
+  function getUniqueOrderItems(order) {
+    const seen = new Set();
+    const unique = [];
+    for (let i = 0; i < order.items.length; i++) {
+      const name = order.items[i].name;
+      const variation = order.variation[i];
+      const key = name + "||" + variation;
+      if (!seen.has(key)) {
+        seen.add(key);
+        unique.push({
+          name,
+          variation,
+          quantity: order.quantity[i], // just take the first found
+        });
+      }
+    }
+    return unique;
+  }
+
   const totalOrders = orders.length;
   const totalIncome = orders.reduce(
     (sum, order) => sum + (order.totalPrice || 0),
@@ -208,10 +227,9 @@ const HomePage = ({ setFullLoadingHandler }) => {
                 </p>
                 <p className="m-0 fw-bold">Orders:</p>
                 <ul>
-                  {order.items.map((item, idx) => (
+                  {getUniqueOrderItems(order).map((ci, idx) => (
                     <li className="fw-bold" key={idx}>
-                      {item.name} - {order.variation[idx]} x{" "}
-                      {order.quantity[idx]}
+                      {ci.name} - {ci.variation} x {ci.quantity}
                     </li>
                   ))}
                 </ul>
