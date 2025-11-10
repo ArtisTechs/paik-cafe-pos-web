@@ -115,3 +115,132 @@
 .edit-btn-home:hover {
   color: #007bff;
 }
+
+/* Modal backdrop: subtle dim, not solid black */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(20, 20, 20, 0.45); /* translucent dark overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(2px);
+  z-index: 999;
+}
+
+/* Modal card: floating centered window */
+.modal-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.8rem 2rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  position: relative;
+  animation: modalFadeIn 0.25s ease-out;
+}
+
+/* Header and text */
+.modal-card h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #222;
+}
+
+.modal-card p {
+  margin: 0.75rem 0;
+  font-size: 1rem;
+  color: #444;
+}
+
+/* Spinner styling */
+.spinner {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #007bff;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  margin: 0.75rem auto;
+  animation: spin 1s linear infinite;
+}
+
+.button-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+/* Buttons */
+.link-button {
+  background: none;
+  color: #007bff;
+  padding: 0.4rem;
+  font-weight: 500;
+}
+
+.link-button:hover {
+  text-decoration: underline;
+}
+
+/* Error text */
+.danger-text {
+  color: #c0392b;
+  font-weight: 600;
+}
+
+.staged-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.staged-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.staged-left .small {
+  color: #666;
+  font-size: 0.85rem;
+  margin-top: 0.2rem;
+}
+
+.staged-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Animation */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

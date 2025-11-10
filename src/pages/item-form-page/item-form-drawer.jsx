@@ -326,7 +326,22 @@ const ItemFormDrawer = ({
               In Stock
             </label>
           </div>
+
+          {/* Best Seller flag (same behavior as In Stock) */}
+          <div className="mt-2">
+            <label className="form-label d-flex align-items-center gap-1">
+              <input
+                className="form-checkbox"
+                type="checkbox"
+                name="bestSeller"
+                checked={!!form?.bestSeller}
+                onChange={handleInputChange}
+              />{" "}
+              Best Seller
+            </label>
+          </div>
         </form>
+
         <div className="form-footer">
           <button
             type="button"

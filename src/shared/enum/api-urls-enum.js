@@ -1,6 +1,6 @@
 export const API_URL = Object.freeze({
-  MAIN_URL: "//localhost:8080",
-  BASE_URL: "http://192.168.100.24:8080/api", //local
+  MAIN_URL: "//192.168.0.229:8080",
+  BASE_URL: "http://192.168.0.229:8080/api", //local
   // MAIN_URL: "//mindful-mentor-back-end-production.up.railway.app",
   // BASE_URL: "https://mindful-mentor-back-end-production.up.railway.app/api", // Change this in production
   USERS: "/users",
@@ -24,4 +24,6 @@ export const API_URL = Object.freeze({
   ORDERS: "/orders",
   ITEM_TYPES: "/item-types",
   ITEMS: "/items",
+  ROBOT_POSITIONS: "/robot-positions",
+  CURRENT: "/current",
 });

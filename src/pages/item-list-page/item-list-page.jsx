@@ -3,8 +3,8 @@ import "./item-list-page.css";
 import {
   fetchItemList,
   fetchItemTypes,
-  addItem, // <-- ADD THIS
-  editItem, // <-- ADD THIS
+  addItem,
+  editItem,
   deleteItem,
   EErrorMessages,
   modalService,
@@ -21,8 +21,10 @@ const ItemListPage = ({ setFullLoadingHandler }) => {
     variation: [],
     variationInput: "",
     price: [],
+    priceInput: "",
     photo: "",
     inStock: true,
+    bestSeller: false,
   };
 
   const [items, setItems] = useState([]);
@@ -32,7 +34,6 @@ const ItemListPage = ({ setFullLoadingHandler }) => {
   const [form, setForm] = useState(blankForm);
   const [nameError, setNameError] = useState("");
 
-  // Load items and types
   const loadItems = async () => {
     setFullLoadingHandler(true);
     try {
@@ -60,7 +61,6 @@ const ItemListPage = ({ setFullLoadingHandler }) => {
     // eslint-disable-next-line
   }, []);
 
-  // Open drawer for add
   const openAddForm = () => {
     setEditingItem(null);
     setForm(blankForm);
@@ -68,7 +68,6 @@ const ItemListPage = ({ setFullLoadingHandler }) => {
     setNameError("");
   };
 
-  // Open drawer for edit
   const openEditForm = (item) => {
     const editForm = {
       ...item,
@@ -79,6 +78,7 @@ const ItemListPage = ({ setFullLoadingHandler }) => {
         : item.price
         ? item.price.toString()
         : "",
+      bestSeller: !!item.bestSeller,
     };
     setEditingItem(item);
     setForm(editForm);
@@ -86,7 +86,6 @@ const ItemListPage = ({ setFullLoadingHandler }) => {
     setNameError("");
   };
 
-  // Close drawer
   const handleClose = () => {
     setShowForm(false);
     setEditingItem(null);
@@ -104,6 +103,7 @@ const ItemListPage = ({ setFullLoadingHandler }) => {
       price: Array.isArray(form.price) ? form.price : [parseFloat(form.price)],
       photo: form.photo?.trim() || "",
       inStock: !!form.inStock,
+      bestSeller: !!form.bestSeller, 
     };
     try {
       if (editingItem) {
@@ -155,7 +155,6 @@ const ItemListPage = ({ setFullLoadingHandler }) => {
     });
   };
 
-  // Render
   return (
     <div className="item-list-page">
       <button className="primary-button" onClick={openAddForm}>
@@ -184,6 +183,7 @@ const ItemListPage = ({ setFullLoadingHandler }) => {
                     <i className="fa fa-trash" />
                   </button>
                 </div>
+
                 <div className="item-photo-wrapper">
                   {item.photo ? (
                     <img
@@ -196,11 +196,16 @@ const ItemListPage = ({ setFullLoadingHandler }) => {
                     <i className="fa-solid fa-mug-hot item-photo-icon"></i>
                   )}
                 </div>
-                <div>
+
+                <div className="badges-row">
                   <span className="badge">{item?.itemType?.name || "—"}</span>
+                  {item?.bestSeller ? ( 
+                    <span className="badge badge-gold ms-2">Best Seller</span>
+                  ) : null}
                 </div>
+
                 <h3 className="fw-bold m-0">{item?.name}</h3>
-                
+
                 <div className="text-muted">{item?.description}</div>
 
                 <div>
@@ -245,11 +250,13 @@ const ItemListPage = ({ setFullLoadingHandler }) => {
                   <span className="fw-bold">In Stock:</span>{" "}
                   {item?.inStock ? "Yes" : "No"}
                 </div>
+
               </div>
             ))
           )}
         </div>
       </div>
+
       <ItemFormDrawer
         open={showForm}
         form={form}
