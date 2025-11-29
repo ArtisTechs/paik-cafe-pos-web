@@ -458,13 +458,13 @@ const HomePage = ({ setFullLoadingHandler }) => {
                         Mark as Done
                       </button>
                     )}
-                    <button
+                    {/* <button
                       className="danger-button"
                       onClick={() => handleDeleteOrder(order)}
                       disabled={uiBusy}
                     >
                       Delete
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               );
